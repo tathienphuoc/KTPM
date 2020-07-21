@@ -3,3 +3,4 @@ Sử dụng ngôn ngữ lập trình PHP kết hợp với các framework Codeig
 Datase:BookStore 
 username: root 
 password: mysql
+Đường dẫn trang web: http://localhost/bookstore/index.php/book_controller
