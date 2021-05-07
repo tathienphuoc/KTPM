@@ -189,27 +189,34 @@
             echo form_close();
             ?>
             <div id="account" class="nav-item mr-0">
-                <i class="fas fa-user-circle" style="font-size: 200%;"></i>
-                <ul class="row submenu mr-0">
-                    <li>
-                        <a href="<?php echo base_url() ?>index.php/Account_Controller/profile">
-                            Thông tin tài khoản
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url() ?>index.php/CartItem_Controller/transaction">
-                            Lịch sử giao dịch
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url() ?>index.php/CartItem_Controller/shoppingCart">
-                            Giỏ hàng
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url() ?>index.php/Account_Controller/logout">Đăng xuất</a>
-                    </li>
-                </ul>
+                <?php
+                if ($this->Account_Model->userIsPresent()) {
+                    echo '<i class="fas fa-user-circle" style="font-size: 200%;"></i>';
+                    echo '<ul class="row submenu mr-0">';
+                    echo '<li>';
+                    echo '<a href="' . base_url() . 'index.php/Account_Controller/profile">';
+                    echo 'Thông tin tài khoản';
+                    echo '</a>';
+                    echo '</li>';
+                    echo '<li>';
+                    echo '<a  href="' . base_url() . 'index.php/CartItem_Controller/transaction">';
+                    echo 'Lịch sử giao dịch';
+                    echo '</a>';
+                    echo '</li>';
+                    echo '<li>';
+                    echo '<a href="' . base_url() . 'index.php/CartItem_Controller/shoppingCart">';
+                    echo 'Giỏ hàng';
+                    echo '</a>';
+                    echo '</li>';
+                    echo '<li>';
+                    echo '<a href="' . base_url() . 'index.php/Account_Controller/logout">Đăng xuất</a>';
+                    echo '</li>';
+                    echo '</ul>';
+                } else {
+                    echo '
+                    <a class="btn text-dark" href="' . base_url() . 'index.php/Account_Controller/login" title="Đăng nhập"><i class="fas fa-sign-in-alt" style="font-size: 200%;"></i></a>';
+                }
+                ?>
             </div>
         </div>
     </nav>

@@ -189,27 +189,34 @@
             echo form_close();
             ?>
             <div id="account" class="nav-item mr-0">
-                <i class="fas fa-user-circle" style="font-size: 200%;"></i>
-                <ul class="row submenu mr-0">
-                    <li>
-                        <a href="<?php echo base_url() ?>index.php/Account_Controller/profile">
-                            Thông tin tài khoản
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url() ?>index.php/CartItem_Controller/transaction">
-                            Lịch sử giao dịch
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url() ?>index.php/CartItem_Controller/shoppingCart">
-                            Giỏ hàng
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url() ?>index.php/Account_Controller/logout">Đăng xuất</a>
-                    </li>
-                </ul>
+                <?php
+                if ($this->Account_Model->userIsPresent()) {
+                    echo '<i class="fas fa-user-circle" style="font-size: 200%;"></i>';
+                    echo '<ul class="row submenu mr-0">';
+                    echo '<li>';
+                    echo '<a href="' . base_url() . 'index.php/Account_Controller/profile">';
+                    echo 'Thông tin tài khoản';
+                    echo '</a>';
+                    echo '</li>';
+                    echo '<li>';
+                    echo '<a  href="' . base_url() . 'index.php/CartItem_Controller/transaction">';
+                    echo 'Lịch sử giao dịch';
+                    echo '</a>';
+                    echo '</li>';
+                    echo '<li>';
+                    echo '<a href="' . base_url() . 'index.php/CartItem_Controller/shoppingCart">';
+                    echo 'Giỏ hàng';
+                    echo '</a>';
+                    echo '</li>';
+                    echo '<li>';
+                    echo '<a href="' . base_url() . 'index.php/Account_Controller/logout">Đăng xuất</a>';
+                    echo '</li>';
+                    echo '</ul>';
+                } else {
+                    echo '
+                    <a class="btn text-dark" href="' . base_url() . 'index.php/Account_Controller/login" title="Đăng nhập"><i class="fas fa-sign-in-alt" style="font-size: 200%;"></i></a>';
+                }
+                ?>
             </div>
         </div>
     </nav>
@@ -231,48 +238,49 @@
                 echo "</div>";
             }
             ?>
-        </div></div>
-            <?php
-            echo "<nav aria-label='Page navigation example'  class='mt-3'>";
-            echo "<ul class='pagination d-flex justify-content-center'>";
-            if ($current == 1) {
-                echo "<li class='page-item disabled'>";
-                echo "<a class='page-link'>Trước</a>";
-                echo "</li>";
-            } else {
-                $current -= 1;
-                echo "<li class='page-item active'>";
-                echo "<a class='page-link ' href='" . base_url() . "index.php/Book_Controller/sortByName/" . $current . "' >Trước</a>";
-                echo "</li>";
-                $current += 1;
-            }
-            for ($i = $begin; $i <= $end; $i++) {
-                if ($current == $i) {
-                    echo "<li class='page-item disabled'>";
-                    echo "<a class='page-link'>" . $i . "</a>";
-                    echo "</li>";
-                } else {
-                    $current += 1;
-                    echo "<li class='page-item active'>";
-                    echo "<a class='page-link ' href='" . base_url() . "index.php/Book_Controller/sortByName/" . $i . "' >" . $i . "</a>";
-                    echo "</li>";
-                    $current -= 1;
-                }
-            }
-            if ($current == $totalPage) {
-                echo "<li class='page-item disabled'>";
-                echo "<a class='page-link'>Sau</a>";
-                echo "</li>";
-            } else {
-                $current += 1;
-                echo "<li class='page-item active'>";
-                echo "<a class='page-link ' href='" . base_url() . "index.php/Book_Controller/sortByName/" . $current . "' >Sau</a>";
-                echo "</li>";
-                $current -= 1;
-            }
-            echo " </ul>";
-            echo "</nav>";
-            ?>
+        </div>
+    </div>
+    <?php
+    echo "<nav aria-label='Page navigation example'  class='mt-3'>";
+    echo "<ul class='pagination d-flex justify-content-center'>";
+    if ($current == 1) {
+        echo "<li class='page-item disabled'>";
+        echo "<a class='page-link'>Trước</a>";
+        echo "</li>";
+    } else {
+        $current -= 1;
+        echo "<li class='page-item active'>";
+        echo "<a class='page-link ' href='" . base_url() . "index.php/Book_Controller/sortByName/" . $current . "' >Trước</a>";
+        echo "</li>";
+        $current += 1;
+    }
+    for ($i = $begin; $i <= $end; $i++) {
+        if ($current == $i) {
+            echo "<li class='page-item disabled'>";
+            echo "<a class='page-link'>" . $i . "</a>";
+            echo "</li>";
+        } else {
+            $current += 1;
+            echo "<li class='page-item active'>";
+            echo "<a class='page-link ' href='" . base_url() . "index.php/Book_Controller/sortByName/" . $i . "' >" . $i . "</a>";
+            echo "</li>";
+            $current -= 1;
+        }
+    }
+    if ($current == $totalPage) {
+        echo "<li class='page-item disabled'>";
+        echo "<a class='page-link'>Sau</a>";
+        echo "</li>";
+    } else {
+        $current += 1;
+        echo "<li class='page-item active'>";
+        echo "<a class='page-link ' href='" . base_url() . "index.php/Book_Controller/sortByName/" . $current . "' >Sau</a>";
+        echo "</li>";
+        $current -= 1;
+    }
+    echo " </ul>";
+    echo "</nav>";
+    ?>
 </body>
 
 </html>
