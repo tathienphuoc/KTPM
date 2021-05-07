@@ -1,0 +1,33 @@
+form{
+    width: 40%;
+    padding-bottom: 200px;
+}
+form h1{
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+form >div{
+    padding-top: 10px;
+}
+.container-fluid{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+#submitBtn{
+    margin-top: 20px;
+    width: 100%;
+}
+.back-btn{
+    margin-top: 10px;
+    margin-left: 10px;
+    z-index: 1000;
+    position: absolute;
+    color: #007bff !important;
+}
+.back-btn:hover{
+    color:white !important;
+}
+.back-btn em{
+    margin-right: 5px;
+}

@@ -1,60 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Đăng nhập</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/register.css">
+    <title>Đăng nhập tài khoản</title>
 </head>
+
 <body>
-<div class="container ">
-    <div class="row justify-content-lg-center">
-        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 ">
+    <a href="<?php echo site_url('Account_Controller/') ?>" class="btn btn-outline-primary back-btn"><em class="fas fa-arrow-left"></em>Trang chủ</a>
+    <div class="container-fluid d-flex">
+        <form method="POST" action="<?php echo site_url('Account_Controller/confirmAccount'); ?>" class="row g-3 needs-validation d-flex flex-column align-items-center m-auto" novalidate>
+            <h1>Đăng nhập tài khoản</h1>
+            <div class="col-md-12">
+                <label for="validationCustomUsername" class="form-label">Tên tài khoản</label>
+                <div class="input-group has-validation">
+                    <input name="username" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                    <span class="input-group-text" name="user_name" id="inputGroupPrepend">@gmail.com</span>
+                    <div class="invalid-feedback">
+                        Vui lòng nhập tên đầy đủ.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label for="validationCustom03" class="form-label">Mật khẩu</label>
+                <input type="password" name="password" class="form-control" id="validationCustom03" required>
+                <div class="invalid-feedback">
+                    Vui lòng nhập mật khẩu.
+                </div>
+            </div>
             <?php
-              echo form_open("Account_Controller/confirmAccount");
-              echo '<h1>Đăng nhập</h1>';
-
-              echo '<div class="alert alert-danger" id="error" hidden></div>';
-              echo '<div class="alert alert-info" id="success" hidden></div>';
-
-              echo '<div class="form-group">';
-              echo form_input(array(
-                  'name'=>'username',
-                  'placeholder'=>"Tên người dùng",
-                  'autofocus'=>"true",
-                  'class'=>"form-control input-lg"
-              ));
-              echo '</div>';
-
-              echo '<div class="form-group">';
-              echo form_input(array(
-                  'name'=>'password',
-                  'type'=>"password",
-                  'placeholder'=>"Nhập mật khẩu",
-                  'required'=>"true",
-                  'class'=>"form-control input-lg"
-              ));
-              echo '</div>';
-
-              echo '<div class="row">';
-              echo '<div class="col-xs-6 col-sm-6 col-md-6">';
-              echo form_submit(array(
-                'type'=>"submit" ,
-                'class'=>"btn btn-lg btn-primary btn-block" ,
-                'value'=>"Đăng nhập" 
-              ));
-              echo '</div>';
-              echo "<a href='" . base_url() . "index.php/Account_controller/forgotpwd' style='margin-top:2%;'>Quên mật khẩu</a>";
-              echo "<a href='" . base_url() . "index.php/Account_controller/register' style='margin-left:10%;margin-top:2%;'>Đăng ký</a>";
-              echo '</div>';
-
-              echo form_close();
+            if ($this->uri->segment('3')) {
+                echo "<div class='col-md-12 text-danger h5'>Tài khoản hoặc mật khẩu  không chính xác.</div>";
+            }
             ?>
-        </div>
+            <div class="col-md-12">
+                <a href="<?php echo site_url('Account_Controller/forgotpwd') ?>">Quên mật khẩu?</a>
+                <a href="<?php echo site_url('Account_Controller/register') ?>">Tạo tài khoản?</a>
+            </div>
+            <div class="col-12 d-flex justify-content-center" style='margin-top: -10px;'>
+                <button class="btn btn-lg btn-primary" id="submitBtn" type="submit">Đăng nhập</button>
+            </div>
+        </form>
     </div>
-</div>
+    <script src="<?php echo base_url(); ?>assets/js/validation.js"></script>
 </body>
+
 </html>

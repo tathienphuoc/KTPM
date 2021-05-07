@@ -55,7 +55,7 @@
               echo "<div class='p-2'>";
               echo "<img  src='".base_url()."images/book/BOOK_".$item->book_id.".jpg?t=".time()."' onerror=\"this.src='".base_url()."images/default/defaultProductImage.jpg'\" alt='' width='70' class='img-fluid rounded shadow-sm'>";
                 echo "<div class='ml-3 d-inline-block align-middle'>";
-                echo "<h5 class='mb-0'> <a href='".base_url()."index.php/Book_controller/viewBook/".$item->book_id."' class='text-dark d-inline-block align-middle'>".$item->title."</a></h5><span class='text-muted font-weight-normal font-italic d-block'>Thể loại: <span>".$item->name."</span></span>";
+                echo "<h5 class='mb-0'> <a href='".base_url()."index.php/Book_Controller/viewBook/".$item->book_id."' class='text-dark d-inline-block align-middle'>".$item->title."</a></h5><span class='text-muted font-weight-normal font-italic d-block'>Thể loại: <span>".$item->name."</span></span>";
                 echo "</div>";
               echo "</div>";
             echo "</th>";

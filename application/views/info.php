@@ -11,6 +11,6 @@
         <h1>Họ và tên: Tạ Thiên Phước</h1>
         <h1>MSSV: 3118410342</h1>
     </div>
-    <a href="<?php echo base_url();?>index.php/Admin_controller" class="btn btn-outline-primary" style='margin-right:50px'>Trang chủ</a>
+    <a href="<?php echo base_url();?>index.php/Admin_Controller" class="btn btn-outline-primary" style='margin-right:50px'>Trang chủ</a>
 </body>
 </html>

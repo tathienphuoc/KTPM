@@ -150,10 +150,10 @@
             <button class="form-control mr-sm-2">Sắp xếp</button>
             <div class="dropdown-content">
                 <?php 
-                    echo "<a class='page-link ' href='" . base_url() . "index.php/Book_controller/sortByName' >Tên</a>";
+                    echo "<a class='page-link ' href='" . base_url() . "index.php/Book_Controller/sortByName' >Tên</a>";
                 ?>
                 <?php 
-                    echo "<a class='page-link ' href='" . base_url() . "index.php/Book_controller/sortByPrice' >Giá</a>";
+                    echo "<a class='page-link ' href='" . base_url() . "index.php/Book_Controller/sortByPrice' >Giá</a>";
                 ?>
             </div>
         </div>
@@ -172,30 +172,7 @@
                 'content' => '<i class="fa fa-search fa-fw" style="font-size: 150%;"></i>'
             ));
             echo form_close();
-          ?><!--
-        <div id="account" class="nav-item mr-0">
-            <i class="fas fa-user-circle" style="font-size: 200%;"></i>
-            <ul class="row submenu mr-0">
-                <li>
-                    <a href="/profile">
-                        Thông tin tài khoản
-                    </a>
-                </li>
-                <li>
-                    <a href="/transaction">
-                        Lịch sử giao dịch
-                    </a>
-                </li>
-                <li>
-                    <a href="/shoppingCart">
-                        Giỏ hàng
-                    </a>
-                </li>
-                <li>
-                    <a th:href="@{/login?logout}">Đăng xuất</a>
-                </li>
-            </ul>
-        </div>-->
+          ?>
     </div>
 </nav>
 <div class="wrapper">
@@ -243,12 +220,12 @@
                                             <style>.product-variant-option .selector-wrapper{display: none;}</style>
                                             <div class="product-add-to-cart">
                                                 <div class="add">
-                                                    <form action="<?php echo base_url()?>index.php/CartItem_controller/addToCart/<?php echo $book->id;?>" method="post">
+                                                    <form action="<?php echo base_url()?>index.php/CartItem_Controller/addToCart/<?php echo $book->id;?>" method="post">
                                                         <span class="control-label">Số lượng</span>
-                                                        <input class="cart-plus-minus" style="width: 100px;" type="number" min="1" name="quantity">
+                                                        <input class="cart-plus-minus" style="width: 100px;" type="number" value="1" min="1" name="quantity">
 
                                                         <button type="submit" class="btn btn-outline-primary" >Thêm vào giỏ hàng</button>
-                                                        <a class="btn btn-outline-primary"  href="<?php echo base_url()?>index.php/Book_controller/books" >Tiếp tục mua sắm</a>
+                                                        <a class="btn btn-outline-primary"  href="<?php echo base_url()?>index.php/Book_Controller/books" >Tiếp tục mua sắm</a>
                                                     </form>
                                                     <script>
                                                             jQuery('#AddToCart').click(function(e) {
@@ -260,7 +237,7 @@
                                             </div><br><hr>
                                         </div>
                                     </div>
-                                    <a href="<?php echo base_url()?>index.php/CartItem_controller/shoppingCart" class="btn btn-outline-primary" style="float: right;margin-top: 10px;">Thanh toán</a>
+                                    <a href="<?php echo base_url()?>index.php/CartItem_Controller/shoppingCart" class="btn btn-outline-primary" style="float: right;margin-top: 10px;">Thanh toán</a>
                                 <!--</form>-->
                             </div>
                         </div>

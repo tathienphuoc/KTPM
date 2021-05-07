@@ -23,13 +23,13 @@ class Admin_Controller extends CI_Controller
         //chưa đăng nhập
         if (!$this->Account_Model->userIsPresent()) {
             //chuyển hướng đến trang đăng nhập
-            redirect('Account_controller/login', 'refresh');
+            redirect('Account_Controller/login', 'refresh');
         } else {
             $user = $this->Account_Model->getAccountIsPresent();
             //tài khoản không có quyền quản trị
             if ($user->role_id != 1) {
                 //chuyển hướng đến trang từ chối truy cập
-                redirect('Admin_controller/accessDenied', 'refresh');
+                redirect('Admin_Controller/accessDenied', 'refresh');
             }
             //tham số thứ 3 của URL sẽ chỉ trang cần truy cập phục vụ mục đích phân trang
             $uri3          = $this->uri->segment('3');
@@ -92,13 +92,13 @@ class Admin_Controller extends CI_Controller
     {
         //yêu cầu đăng nhập
         if (!$this->Account_Model->userIsPresent()) {
-            redirect('Account_controller/login', 'refresh');
+            redirect('Account_Controller/login', 'refresh');
         } else {
             $user = $this->Account_Model->getAccountIsPresent();
             //không có quyền quản trị
             if ($user->role_id != 1) {
                 //từ chối truy cập
-                redirect('Admin_controller/accessDenied', 'refresh');
+                redirect('Admin_Controller/accessDenied', 'refresh');
             }
             //lưu những thông tin cần thiết vào data
             $data['categories'] = $this->Category_Model->getAll();
@@ -112,11 +112,11 @@ class Admin_Controller extends CI_Controller
     public function saveAddBook()
     {
         if (!$this->Account_Model->userIsPresent()) {
-            redirect('Account_controller/login', 'refresh');
+            redirect('Account_Controller/login', 'refresh');
         } else {
             $user = $this->Account_Model->getAccountIsPresent();
             if ($user->role_id != 1) {
-                redirect('Admin_controller/accessDenied', 'refresh');
+                redirect('Admin_Controller/accessDenied', 'refresh');
             }
             //lấy những thông tin về sách được yêu cầu thêm mới
             $data = array(
@@ -132,16 +132,30 @@ class Admin_Controller extends CI_Controller
             //nếu có hình ảnh
             if (!$_FILES['image']['size'] == 0) {
                 $id   = $this->db->insert_id();
-                $book = $this->Book_Model->getById($id);
-                //lưu vào local folder
-                $this->Upload_Model->upload('BOOK_' . $book->id, 1);
-                //chuyển đổi ảnh thành bytes 
-                $book->image = $this->Upload_Model->convertFileToByte("BOOK_" . $book->id, 1);
-                //cập nhập vào CSDL
-                $this->Book_Model->update($book, $id);
+                //đường dẫn
+                $config['upload_path']   = 'images/book/';
+                //tên ảnh
+                $config['file_name']     = "BOOK_" . $id;
+                //phần mở rộng
+                $config['allowed_types'] = 'jpg';
+                //thay thế nếu đã tồn tại 
+                $config['overwrite']     = TRUE;
+                //kích thước tối đa
+                $config['max_size']      = '100000';
+                //độ rộng tối đa
+                $config['max_width']     = '600000';
+                //độ cao tối đa
+                $config['max_height']    = '600000';
+
+                $this->load->library('upload', $config);
+
+                $this->upload->do_upload('image');
+                //lưu vào file local với tên USER_id với id là id của tài khoản, tham số 0 là đường dẫn vào thư mục lưu trữ hình ảnh dành cho người dùng
+                // $this->Upload_Model->upload('USER_' . $user->id, 0);
+                //chuyển ảnh thành byte để lưu vào CSDL
             }
             //quay lại trang quản trị
-            redirect('Admin_controller/booksAdmin', 'refresh');
+            redirect('Admin_Controller/booksAdmin', 'refresh');
         }
     }
 
@@ -151,11 +165,11 @@ class Admin_Controller extends CI_Controller
     {
         //yêu cầu đăng nhập
         if (!$this->Account_Model->userIsPresent()) {
-            redirect('Account_controller/login', 'refresh');
+            redirect('Account_Controller/login', 'refresh');
         } else {
             $user = $this->Account_Model->getAccountIsPresent();
             if ($user->role_id != 1) {
-                redirect('Admin_controller/accessDenied', 'refresh');
+                redirect('Admin_Controller/accessDenied', 'refresh');
             }
             //id của sách cần chỉnh sửa
             $uri3                    = $this->uri->segment('3');
@@ -175,11 +189,11 @@ class Admin_Controller extends CI_Controller
     public function saveEditBook()
     {
         if (!$this->Account_Model->userIsPresent()) {
-            redirect('Account_controller/login', 'refresh');
+            redirect('Account_Controller/login', 'refresh');
         } else {
             $user = $this->Account_Model->getAccountIsPresent();
             if ($user->role_id != 1) {
-                redirect('Admin_controller/accessDenied', 'refresh');
+                redirect('Admin_Controller/accessDenied', 'refresh');
             }
             //id của sách 
             $uri3               = $this->uri->segment('3');
@@ -193,12 +207,31 @@ class Admin_Controller extends CI_Controller
             $book->description  = $this->input->post('description');
             //bao gồm cả ảnh nếu có
             if (!$_FILES['image']['size'] == 0) {
-                $this->Upload_Model->upload('BOOK_' . $book->id, 1);
-                $book->image = $this->Upload_Model->convertFileToByte("BOOK_" . $book->id, 1);
+                //đường dẫn
+                $config['upload_path']   = 'images/book/';
+                //tên ảnh
+                $config['file_name']     = "BOOK_" . $uri3;
+                //phần mở rộng
+                $config['allowed_types'] = 'jpg';
+                //thay thế nếu đã tồn tại 
+                $config['overwrite']     = TRUE;
+                //kích thước tối đa
+                $config['max_size']      = '100000';
+                //độ rộng tối đa
+                $config['max_width']     = '600000';
+                //độ cao tối đa
+                $config['max_height']    = '600000';
+
+                $this->load->library('upload', $config);
+
+                $this->upload->do_upload('image');
+                //lưu vào file local với tên USER_id với id là id của tài khoản, tham số 0 là đường dẫn vào thư mục lưu trữ hình ảnh dành cho người dùng
+                // $this->Upload_Model->upload('USER_' . $user->id, 0);
+                //chuyển ảnh thành byte để lưu vào CSDL
             }
             //cập nhật vào CSDL
             $this->Book_Model->update($book, $uri3);
-            redirect('Admin_controller/booksAdmin', 'refresh');
+            redirect('Admin_Controller/booksAdmin', 'refresh');
         }
     }
 
@@ -206,17 +239,17 @@ class Admin_Controller extends CI_Controller
     public function deleteBook()
     {
         if (!$this->Account_Model->userIsPresent()) {
-            redirect('Account_controller/login', 'refresh');
+            redirect('Account_Controller/login', 'refresh');
         } else {
             $user = $this->Account_Model->getAccountIsPresent();
             if ($user->role_id != 1) {
-                redirect('Admin_controller/accessDenied', 'refresh');
+                redirect('Admin_Controller/accessDenied', 'refresh');
             }
             //id của sách cần xóa
             $uri3 = $this->uri->segment('3');
             //thực hiện xóa
             $this->Book_Model->delete($uri3);
-            redirect('Admin_controller/booksAdmin', 'refresh');
+            redirect('Admin_Controller/booksAdmin', 'refresh');
         }
     }
 
@@ -224,11 +257,11 @@ class Admin_Controller extends CI_Controller
     public function shipping()
     {
         if (!$this->Account_Model->userIsPresent()) {
-            redirect('Account_controller/login', 'refresh');
+            redirect('Account_Controller/login', 'refresh');
         } else {
             $user = $this->Account_Model->getAccountIsPresent();
             if ($user->role_id != 1) {
-                redirect('Admin_controller/accessDenied', 'refresh');
+                redirect('Admin_Controller/accessDenied', 'refresh');
             }
             //các thông tin về đơn hàng
             $data['shippings']=$this->Shipping_Model->getShippings();
@@ -244,17 +277,17 @@ class Admin_Controller extends CI_Controller
     public function saveShipping()
     {
         if (!$this->Account_Model->userIsPresent()) {
-            redirect('Account_controller/login', 'refresh');
+            redirect('Account_Controller/login', 'refresh');
         } else {
             $user = $this->Account_Model->getAccountIsPresent();
             if ($user->role_id != 1) {
-                redirect('Admin_controller/accessDenied', 'refresh');
+                redirect('Admin_Controller/accessDenied', 'refresh');
             }
         //lấy id của đơn hàng cần giao
         $uri3 = $this->uri->segment('3');
         //thực hiện giao hàng
         $this->Shipping_Model->shipping($uri3);
-        redirect('Admin_controller/shipping', 'refresh');
+        redirect('Admin_Controller/shipping', 'refresh');
         }
     }
 
@@ -263,11 +296,11 @@ class Admin_Controller extends CI_Controller
     public function statistic()
     {
         if (!$this->Account_Model->userIsPresent()) {
-            redirect('Account_controller/login', 'refresh');
+            redirect('Account_Controller/login', 'refresh');
         } else {
             $user = $this->Account_Model->getAccountIsPresent();
             if ($user->role_id != 1) {
-                redirect('Admin_controller/accessDenied', 'refresh');
+                redirect('Admin_Controller/accessDenied', 'refresh');
             }
             //lấy các thông tin phục vụ việc thống kế
             $data['popular']=$this->Book_Model->statistic();

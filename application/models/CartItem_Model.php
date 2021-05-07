@@ -68,7 +68,7 @@ class CartItem_Model extends CI_Model
             'C.account_id' => $user->id
         );
         $this->db->select('*,
-        c.id as c_id');
+        C.id as c_id');
         $this->db->from('cartitem as C');
         $this->db->join('book as B', 'C.book_id = B.id', 'left');
         $this->db->join('category as G', 'B.category_id = G.id', 'left');

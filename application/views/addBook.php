@@ -15,7 +15,7 @@
 <div class="btn btn-outline-primary" style="margin-left:10px;margin-top:10px;border:1px solid blue">
   <a href="javascript:history.back()" >Trở về</a>
 </div>
-    <form class="container" action="<?php echo base_url()?>index.php/Admin_controller/saveAddBook"  method="post" enctype="multipart/form-data">
+    <form class="container" action="<?php echo base_url()?>index.php/Admin_Controller/saveAddBook"  method="post" enctype="multipart/form-data">
       <h1>
           <strong>Thêm sản phẩm</strong>
       </h1>

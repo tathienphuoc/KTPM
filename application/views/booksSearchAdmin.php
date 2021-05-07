@@ -124,14 +124,14 @@
             aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="<?php echo base_url()?>index.php/Admin_controller">TSNN</a>
+    <a class="navbar-brand" href="<?php echo base_url()?>index.php/Admin_Controller">TSNN</a>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url()?>index.php/Admin_controller/addBook">Thêm sản phẩm</a>
+                <a class="nav-link" href="<?php echo base_url()?>index.php/Admin_Controller/addBook">Thêm sản phẩm</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url()?>index.php/Admin_controller/shipping">Giao hàng</a>
+                <a class="nav-link" href="<?php echo base_url()?>index.php/Admin_Controller/shipping">Giao hàng</a>
             </li>
         </ul>
             <?php
@@ -154,12 +154,12 @@
             <i class="fas fa-user-circle" style="font-size: 200%;"></i>
             <ul class="row submenu mr-0">
                 <li>
-                    <a href="<?php echo base_url()?>index.php/Account_controller/profile">
+                    <a href="<?php echo base_url()?>index.php/Account_Controller/profile">
                         Thông tin tài khoản
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url()?>index.php/Account_controller/logout">Đăng xuất</a>
+                    <a href="<?php echo base_url()?>index.php/Account_Controller/logout">Đăng xuất</a>
                 </li>
             </ul>
         </div>
@@ -179,8 +179,8 @@
                     echo "</span>";
                 echo "</div >";
                 echo "<div class='container'>";
-                echo "<a href='" . base_url() . "index.php/Admin_controller/editBook/".$book->id."' class='btn btn-outline-primary' style='width:49%'>Chỉnh sửa</a>";
-                echo "<a href='" . base_url() . "index.php/Admin_controller/deleteBook/".$book->id."' class='btn btn-outline-primary' style='width:49%'>Xóa</a>";
+                echo "<a href='" . base_url() . "index.php/Admin_Controller/editBook/".$book->id."' class='btn btn-outline-primary' style='width:49%'>Chỉnh sửa</a>";
+                echo "<a href='" . base_url() . "index.php/Admin_Controller/deleteBook/".$book->id."' class='btn btn-outline-primary' style='width:49%'>Xóa</a>";
                 echo "</div>";
             echo "</div>";
         }

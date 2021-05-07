@@ -14,8 +14,8 @@
     <p class="lead">Mọi sự ủng hộ của bạn là niềm vui của chúng tôi</p>
     <hr>
     <p class="lead">
-        <a class="btn btn-outline-primary" href="<?php echo base_url()?>index.php/Book_controller/books" >Tiếp tục mua sắm</a>
-        <a class="btn btn-outline-primary" href="<?php echo base_url()?>index.php/Account_controller/logout" >Đăng suất</a>
+        <a class="btn btn-outline-primary" href="<?php echo base_url()?>index.php/Book_Controller/books" >Tiếp tục mua sắm</a>
+        <a class="btn btn-outline-primary" href="<?php echo base_url()?>index.php/Account_Controller/logout" >Đăng suất</a>
     </p>
 </div>
 </body>

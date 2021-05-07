@@ -1,126 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Đăng ký</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/register.css">
+    <title>Đăng ký tài khoản</title>
 </head>
+
 <body>
-<?php
-  foreach($usernames as $username){
-    echo '<input value="'.$username.'" type="hidden" name="usernameExist"></input>';
-  }
-?>
-<div class="container ">
-    <div class="row justify-content-lg-center">
-        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 ">
+    <a href="<?php echo site_url('Account_Controller/') ?>" class="btn btn-outline-primary back-btn"><em class="fas fa-arrow-left"></em>Trang chủ</a>
+    <div class="container-fluid d-flex">
+        <form method="POST" action="<?php echo site_url('Account_Controller/saveAccount'); ?>" class="row g-3 needs-validation d-flex flex-column align-items-center m-auto" novalidate enctype="multipart/form-data">
+            <h1>Đăng ký tài khoản</h1>
+            <div class="col-md-12">
+                <label for="validationCustom01" class="form-label">Tên đầy đủ</label>
+                <input name="fullname" type="text" class="form-control" id="validationCustom01" required>
+                <div class="invalid-feedback">
+                    Vui lòng nhập tên đầy đủ.
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label for="validationCustomUsername" class="form-label">Tên tài khoản</label>
+                <div class="input-group has-validation">
+                    <input name="username" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                    <span class="input-group-text" id="inputGroupPrepend">@gmail.com</span>
+                    <div class="invalid-feedback">
+                        Vui lòng nhập tên tài khoản.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label for="validationCustom03" class="form-label">Mật khẩu</label>
+                <input name="password" type="password" class="form-control" id="validationCustom03" required>
+                <div class="invalid-feedback">
+                    Vui lòng nhập mật khẩu.
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label for="validationCustom03" class="form-label">Nhập lại mật khẩu</label>
+                <input name="confirm_password" type="password" class="form-control" id="validationCustom03" required>
+                <div class="invalid-feedback">
+                    Vui lòng nhập lại mật khẩu.
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label for=" exampleFormControlFile1">Chọn ảnh đại diện</label>
+                <input name="image" type="file" accept="image/*" class="form-control-file" id="exampleFormControlFile1">
+            </div>
             <?php
-              echo form_open("Account_Controller/saveAccount");
-              echo '<h1>Thông tin đăng ký</h1>';
-
-              echo '<div class="alert alert-danger" id="error" hidden></div>';
-              echo '<div class="alert alert-info" id="success" hidden></div>';
-
-              echo '<div class="form-group">';
-              echo form_input(array(
-                  'id'=>'username',
-                  'name'=>'username',
-                  'placeholder'=>"Tên người dùng",
-                  'autofocus'=>"true",
-                  'class'=>"form-control input-lg"
-              ));
-              echo '</div>';
-
-              echo '<div class="form-group">';
-              echo form_input(array(
-                  'id'=>'password',
-                  'name'=>'password',
-                  'type'=>"password",
-                  'placeholder'=>"Nhập mật khẩu",
-                  'required'=>"true",
-                  'class'=>"form-control input-lg"
-              ));
-              echo '</div>';
-
-              echo '<div class="form-group">';
-              echo form_input(array(
-                  'id'=>'confirm_password',
-                  'name'=>'confirm_password',
-                  'type'=>"password",
-                  'placeholder'=>"Nhập lại mật khẩu",
-                  'required'=>"true",
-                  'class'=>"form-control input-lg"
-              ));
-              echo '</div>';
-
-              echo '<div class="row">';
-              echo '<div class="col-xs-6 col-sm-6 col-md-6">';
-              echo form_submit(array(
-                'type'=>"submit" ,
-                'class'=>"btn btn-lg btn-primary btn-block" ,
-                'value'=>"Đăng ký" ,
-                'id'=>"btnSubmit" ,
-                'disabled'=>"true" 
-              ));
-              echo '</div>';
-              echo '</div>';
-              echo form_close();
+            if ($this->uri->segment('3')) {
+                echo "<div class='col-md-12 text-danger h5'>Tài khoản đã tồn tại.</div>";
+            }
             ?>
-        </div>
+            <div class="col-md-12">
+                <a href="<?php echo site_url('Account_Controller/login') ?>">Đã có tài khoản?</a>
+            </div>
+            <div class="col-12 d-flex justify-content-center" style='margin-top: -10px;'>
+                <button class="btn btn-lg btn-primary" id="submitBtn" type="submit">Đăng ký</button>
+            </div>
+        </form>
     </div>
-
-</div>
-<!--Check form using Jquery-->
-<script>
-    $('#username,#password,#confirm_password').on('keyup',function(){
-      $("#btnSubmit").attr("disabled", true);
-      var username=$('#username').val();
-      var pwd=$('#password').val();
-      var cpwd=$('#confirm_password').val();
-      if(checkUsername(username)&&checkPwd(pwd,cpwd)){
-        $("#btnSubmit").attr("disabled", false);
-      }
-
-    });
-    function checkUsername(username){
-    var names = $("input[name='usernameExist']")
-    .map(function(){return $(this).val();}).get();
-      if (username.indexOf(' ')>=0) {
-         $('#error').html('Tên người dùng không chứa khoảng trắng').css('color', 'red').attr("hidden", false);
-         $('#success').attr("hidden", true);
-       } else if (username.length<3) {
-         $('#error').html('Tên người dùng phải từ 3 ký tự trở lên').css('color', 'red').attr("hidden", false);
-         $('#success').attr("hidden", true);
-       }else if (names.includes(username)) {
-         $('#error').html('Tên người dùng đã được sử dụng').css('color', 'red').attr("hidden", false);
-         $('#success').attr("hidden", true);
-       }else{
-         $('#error').html('').attr("hidden", true);
-         return true;
-       }
-       return false;
-    }
-
-    function checkPwd(pwd,cpwd){
-      if (pwd.trim()=='') {
-       $('#error').html('Vui lòng nhập mật khẩu').css('color', 'red').attr("hidden", false);
-       $('#success').attr("hidden", true);
-     }
-      else if (pwd==cpwd) {
-       $('#success').html('Mật khẩu trùng khớp').css('color', 'green').attr("hidden", false);
-       return true;
-     } else{
-       $('#error').html('Mật khẩu không trùng khớp').css('color', 'red').attr("hidden", false);
-       $('#success').attr("hidden", true);
-      }
-      return false;
-    }
-
-
- </script>
+    <script src="<?php echo base_url(); ?>assets/js/validation.js"></script>
 </body>
+
 </html>

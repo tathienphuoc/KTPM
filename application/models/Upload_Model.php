@@ -12,27 +12,29 @@ class Upload_Model extends CI_Model
         //ảnh của sách
         if ($isBook == 1) {
             //đường dẫn lưu trữ cục bộ dành cho sách
-            $pathName = "images/book/" . $pathName . ".jpg";
+            $pathName = base_url()."images/book/" . $pathName . ".jpg";
         } else {
             //đường dẫn lưu trữ cục bộ dành cho tài khoản
-            $pathName = "images/user/" . $pathName . ".jpg";
+            $pathName = base_url()."images/user/" . $pathName . ".jpg";
         }
+        // if(file_exists($pathName)){
+            $file     = fopen($pathName, "rb");
+            $contents = fread($file, filesize($pathName));
+            fclose($file);
+            //trả về mảng bytes 
+            return $contents;
+        // }
         //chuyển đổi file thành bytes
-        $file     = fopen($pathName, "rb");
-        $contents = fread($file, filesize($pathName));
-        fclose($file);
-        //trả về mảng bytes 
-        return $contents;
     }
 
     //Lưu ảnh vào cục bộ
     public function upload($name, $isBook)
     {
-        $upload_path;
+        // $upload_path;
         if ($isBook == 1) {
-            $upload_path = 'images/book/';
+            $upload_path = base_url().'images/book/';
         } else {
-            $upload_path = 'images/user/';
+            $upload_path = base_url().'images/user/';
         }
         //đường dẫn
         $config['upload_path']   = $upload_path;
@@ -48,7 +50,7 @@ class Upload_Model extends CI_Model
         $config['max_width']     = '60000';
         //độ cao tối đa
         $config['max_height']    = '60000';
-        //sư dụng thư viện của framwork
+        //sư dụng thư viện của framework
         $this->load->library("upload", $config);
         //nếu lưu thành công sẽ trả về các thông sô của ảnh(tên, đường dẫn, kích thước,....)
         if ($this->upload->do_upload("image")) {

@@ -57,14 +57,14 @@
                     echo "<div class='p-2'>";
                       echo "<img  src='".base_url()."images/book/BOOK_".$item->book_id.".jpg?t=".time()."' onerror=\"this.src='".base_url()."images/default/defaultProductImage.jpg'\" alt='' width='70' class='img-fluid rounded shadow-sm'>";
                       echo "<div class='ml-3 d-inline-block align-middle'>";
-                        echo "<h5 class='mb-0'> <a href='".base_url()."index.php/Book_controller/viewBook/".$item->book_id."' class='text-dark d-inline-block align-middle'>".$item->title."</a></h5><span class='text-muted font-weight-normal font-italic d-block'>Thể loại: <span>".$item->name."</span></span>";
+                        echo "<h5 class='mb-0'> <a href='".base_url()."index.php/Book_Controller/viewBook/".$item->book_id."' class='text-dark d-inline-block align-middle'>".$item->title."</a></h5><span class='text-muted font-weight-normal font-italic d-block'>Thể loại: <span>".$item->name."</span></span>";
                       echo "</div>";
                     echo "</div>";
                   echo "</th>";
                   echo "<td class='border-0 align-middle'><strong>".$item->quantity."</strong></td>";
                   echo "<td class='border-0 align-middle'><strong>".number_format($item->price)."₫</strong></td>";
                   echo "<td class='border-0 align-middle'><strong>".$item->order_date."</strong></td>";
-                  echo "<td class='border-0 align-middle'>&ensp;&ensp;&ensp;<a href='".base_url()."index.php/CartItem_controller/deleteCartItem/".$item->c_id."' class='text-dark'><i class='far fa-trash-alt'></i><i class='fa fa-trash'></i></a></td>";
+                  echo "<td class='border-0 align-middle'>&ensp;&ensp;&ensp;<a href='".base_url()."index.php/CartItem_Controller/deleteCartItem/".$item->c_id."' class='text-dark'><i class='far fa-trash-alt'></i><i class='fa fa-trash'></i></a></td>";
                   echo "</tr>";
                 }
               ?>
@@ -74,7 +74,7 @@
           <!-- End -->
         </div>
       </div>
-      <form action="<?php echo base_url()?>index.php/CartItem_controller/checkout" method="post">
+      <form action="<?php echo base_url()?>index.php/CartItem_Controller/checkout" method="post">
         <div class="row py-5 p-4 bg-white rounded shadow-sm">
           <div class="col-lg-6">
             <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Phương thức thanh toán</div>
@@ -133,9 +133,9 @@
                 </li>
               </ul>
               <div class="container">
-                <a href="<?php echo base_url();?>index.php/Book_controller/books" type="button" style="float:right;" class="btn btn-outline-primary rounded-pill py-2">Tiếp tục mua sắm</a>
+                <a href="<?php echo base_url();?>index.php/Book_Controller/books" type="button" style="float:right;" class="btn btn-outline-primary rounded-pill py-2">Tiếp tục mua sắm</a>
                 
-                <button type="submit" style="float:right;" class="btn btn-dark rounded-pill py-2" id="btnSubmit" disabled>Thanh toán</button>
+                <button type="submit" style="float:right; margin-right:10px;" class="btn btn-dark rounded-pill py-2" id="btnSubmit" disabled>Thanh toán</button>
               </div>
             </div>
           </div>

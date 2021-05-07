@@ -26,7 +26,7 @@
     <div class="container">
         <div class="logo">
             <a href="#">TSNN</a> &ensp;
-            <a class="nav-link" href="<?php echo base_url()?>index.php/Admin_controller/info">Thông tin</a>
+            <a class="nav-link" href="<?php echo base_url()?>index.php/Admin_Controller/info">Thông tin</a>
         </div>
         <div id="mainListDiv" class="main_list">
             <ul class="navlinks">

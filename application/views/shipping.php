@@ -87,7 +87,7 @@
                         echo "<td class='border-0 align-middle'><strong >".$item->order_date."</strong></td>";
                         echo "</tbody>";
                      }
-                     echo "<td colspan='4'><a href='".base_url()."index.php/Admin_controller/saveShipping/".$shipping->id."' style='float:right;'type='button' class='btn btn-outline-primary rounded-pill py-2'>Giao hàng</a></td>";
+                     echo "<td colspan='4'><a href='".base_url()."index.php/Admin_Controller/saveShipping/".$shipping->id."' style='float:right;'type='button' class='btn btn-outline-primary rounded-pill py-2'>Giao hàng</a></td>";
                   echo "</table>";
                echo "</div>";
                   echo "<div style='display:block;height:50px'></div>";
@@ -97,7 +97,7 @@
           <!-- End -->
         </div>
       </div>
-      <a href="<?php echo base_url();?>index.php/Admin_controller/booksAdmin" type="button" style="float:right;" class="btn btn-outline-primary rounded-pill py-2">Trở về</a>
+      <a href="<?php echo base_url();?>index.php/Admin_Controller/booksAdmin" type="button" style="float:right;" class="btn btn-outline-primary rounded-pill py-2">Trở về</a>
     </div>
   </div>
 </div>

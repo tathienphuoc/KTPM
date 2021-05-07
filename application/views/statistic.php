@@ -52,7 +52,7 @@
                                             echo "<div class='p-2'>";
                                             echo "<img  src='".base_url()."images/book/BOOK_".$pop->book_id.".jpg?t=".time()."' onerror=\"this.src='".base_url()."images/default/defaultProductImage.jpg'\" alt='' width='70' class='img-fluid rounded shadow-sm'>";
                                                 echo "<div class='ml-3 d-inline-block align-middle'>";
-                                                    echo "<h5 class='mb-0'> <a href='".base_url()."index.php/Book_controller/viewBook/".$pop->book_id."' class='text-dark d-inline-block align-middle'>".$book[$pop->book_id]->title."</a>";
+                                                    echo "<h5 class='mb-0'> <a href='".base_url()."index.php/Book_Controller/viewBook/".$pop->book_id."' class='text-dark d-inline-block align-middle'>".$book[$pop->book_id]->title."</a>";
                                                     echo "</h5><span class='text-muted font-weight-normal font-italic d-block'>Thể loại: <span>".$category[$book[$pop->book_id]->category_id]->name."</span></span>";
                                                 echo "</div>";
                                             echo "</div>";
@@ -114,7 +114,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <a href="<?php echo base_url();?>index.php/Admin_controller/booksAdmin" type="button" style="float:right;" class="btn btn-outline-primary rounded-pill py-2">Trở về</a>
+                    <a href="<?php echo base_url();?>index.php/Admin_Controller/booksAdmin" type="button" style="float:right;" class="btn btn-outline-primary rounded-pill py-2">Trở về</a>
 
                 </div>
             </div>

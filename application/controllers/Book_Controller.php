@@ -86,7 +86,7 @@ class Book_Controller extends CI_Controller
     public function viewBook()
     {
         if (!$this->Account_Model->userIsPresent()) {
-            redirect('Account_controller/login', 'refresh');
+            redirect('Account_Controller/login', 'refresh');
         } else {
             //Lấy id sách cần xem
             $uri3           = $this->uri->segment('3');

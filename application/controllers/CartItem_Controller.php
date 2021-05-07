@@ -14,7 +14,7 @@ class CartItem_Controller extends CI_Controller
     function shoppingCart()
     {
         if (!$this->Account_Model->userIsPresent()) {
-            redirect('Account_controller/login', 'refresh');
+            redirect('Account_Controller/login', 'refresh');
         } else {
             //Các sản phẩm đã mua
             $data['items']         = $this->CartItem_Model->getCartItemToCheckOut();
@@ -32,7 +32,7 @@ class CartItem_Controller extends CI_Controller
     function checkout()
     {
         if (!$this->Account_Model->userIsPresent()) {
-            redirect('Account_controller/login', 'refresh');
+            redirect('Account_Controller/login', 'refresh');
         } else {
             $user     = $this->Account_Model->getAccountIsPresent();
             //Các thông tin về tài khoản thẻ và địa chỉ 
@@ -56,7 +56,7 @@ class CartItem_Controller extends CI_Controller
     function addToCart()
     {
         if (!$this->Account_Model->userIsPresent()) {
-            redirect('Account_controller/login', 'refresh');
+            redirect('Account_Controller/login', 'refresh');
         } else {
             //Tài khoản mua hàng
             $user     = $this->Account_Model->getAccountIsPresent();
@@ -71,7 +71,7 @@ class CartItem_Controller extends CI_Controller
                 'order_date' => date("Y-m-d")
             );
             $this->CartItem_Model->save($item);
-            redirect('Book_controller/books', 'refresh');
+            redirect('Book_Controller/books', 'refresh');
         }
     }
 
@@ -79,13 +79,13 @@ class CartItem_Controller extends CI_Controller
     function deleteCartItem()
     {
         if (!$this->Account_Model->userIsPresent()) {
-            redirect('Account_controller/login', 'refresh');
+            redirect('Account_Controller/login', 'refresh');
         } else {
             //id của sản phẩm cần xóa
             $uri3           = $this->uri->segment('3');
             //thực hiện xóa
             $this->CartItem_Model->delete($uri3);
-            redirect('CartItem_controller/shoppingCart', 'refresh');
+            redirect('CartItem_Controller/shoppingCart', 'refresh');
         }
     }
 
@@ -93,7 +93,7 @@ class CartItem_Controller extends CI_Controller
     function transaction()
     {
         if (!$this->Account_Model->userIsPresent()) {
-            redirect('Account_controller/login', 'refresh');
+            redirect('Account_Controller/login', 'refresh');
         } else {
             //Các sản phẩm đã thanh toán, đồng thời hiện thị tình trang sản phẩm đã giao hàng hay chưa
             $data['items']         = $this->CartItem_Model->getCartItemPurchased();
