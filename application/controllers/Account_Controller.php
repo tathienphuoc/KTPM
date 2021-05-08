@@ -54,6 +54,12 @@ class Account_Controller extends CI_Controller
         if ($this->Account_Model->getByUsername($data['user_name'])) {
             redirect('/Account_Controller/register/tryagain');
         }
+        if (strcmp($this->input->post('confirm_password'), $this->input->post('password'))) {
+            redirect('/Account_Controller/register/nomatch');
+        }
+        if (strlen($this->input->post('password'))<9) {
+            redirect('/Account_Controller/register/length');
+        }
             //save biến data vào CSDL
             $this->Account_Model->insert($data);
 

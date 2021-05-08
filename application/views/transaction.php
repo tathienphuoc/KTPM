@@ -41,9 +41,9 @@
                 <th scope="col" class="border-0 bg-light">
                   <div class="py-2 text-uppercase">Ngày đặt hàng</div>
                 </th>
-                <th scope="col" class="border-0 bg-light">
+                <!-- <th scope="col" class="border-0 bg-light">
                   <div class="py-2 text-uppercase">Tình trạng</div>
-                </th>
+                </th> -->
               </tr>
               </thead>
               <tbody>
@@ -62,12 +62,12 @@
             echo "<td class='border-0 align-middle'><strong>".$item->quantity."</strong></td>";
             echo "<td class='border-0 align-middle'><strong>".$item->order_date."</strong></td>";
             echo "<td class='border-0 align-middle' style='text-align:center'>&ensp;&ensp;";
-              if($item->status==1){
-                echo "<strong style='color:red;text-align:center'>Chưa giao hàng</strong>";
-              }else if($item->status==2){
-                echo "<strong style='color:green;'>Đã giao hàng</strong>";
-              }
-              echo "</tr>";
+              // if($item->status==1){
+              //   echo "<strong style='color:red;text-align:center'>Chưa giao hàng</strong>";
+              // }else if($item->status==2){
+              //   echo "<strong style='color:green;'>Đã giao hàng</strong>";
+              // }
+              // echo "</tr>";
             }
               ?>
               </tr>

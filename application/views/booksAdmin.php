@@ -163,9 +163,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo base_url() ?>index.php/Admin_Controller/addBook">Thêm sản phẩm</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="<?php echo base_url() ?>index.php/Admin_Controller/shipping">Giao hàng</a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo base_url() ?>index.php/Admin_Controller/statistic">Thống kê</a>
                 </li>

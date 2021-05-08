@@ -52,8 +52,12 @@
                 <input name="image" type="file" accept="image/*" class="form-control-file" id="exampleFormControlFile1">
             </div>
             <?php
-            if ($this->uri->segment('3')) {
+            if ($this->uri->segment('3')=="tryagain") {
                 echo "<div class='col-md-12 text-danger h5'>Tài khoản đã tồn tại.</div>";
+            } elseif ($this->uri->segment('3') == "nomatch") {
+                echo "<div class='col-md-12 text-danger h5'>Mật khẩu nhập lại không khớp.</div>";
+            } elseif ($this->uri->segment('3') == "length") {
+                echo "<div class='col-md-12 text-danger h5'>Độ dài mật khẩu phải lớn hơn 8 ký tự.</div>";
             }
             ?>
             <div class="col-md-12">
