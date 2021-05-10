@@ -50,7 +50,7 @@
         <a href="<?php echo site_url('Account_Controller/register') ?>">Tạo tài khoản?</a>
       </div>
       <div class="col-12 d-flex justify-content-center" style='margin-top: -10px;'>
-        <button class="btn btn-lg btn-primary" id="submitBtn" type="submit">Đăng nhập</button>
+        <button class="btn btn-lg btn-primary" id="submitBtn" type="submit">Lấy lại mật khẩu</button>
       </div>
     </form>
   </div>
