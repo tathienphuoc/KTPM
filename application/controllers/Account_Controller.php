@@ -170,6 +170,14 @@ class Account_Controller extends CI_Controller
         if (!$user) {
             redirect('/Account_Controller/forgotpwd/tryagain');
         }
+        if (strcmp($this->input->post('confirm_password'),
+            $this->input->post('password')
+        )) {
+            redirect('/Account_Controller/forgotpwd/nomatch');
+        }
+        if (strlen($this->input->post('password')) < 9) {
+            redirect('/Account_Controller/forgotpwd/length');
+        }
         //mã hóa mật khẩu
         $user->pwd = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
         //cập nhật mậu khẩu mới sau khi đã mã hóa
