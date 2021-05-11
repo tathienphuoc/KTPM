@@ -150,7 +150,6 @@
   <!--Check form using Jquery-->
   <script>
     $("#btnSubmit").on("click", function(event) {
-      event.preventDefault();
       var city = $("#city").val();
       var phoneNumber = $("#phoneNumber").val();
       var cardOwner = $("#cardOwner").val();
@@ -200,8 +199,10 @@
       } else {
         $("#errPhone").html("");
       }
-      if (error === 0) {} else {
+      if (error === 0) {
         $("#btnSubmit").submit();
+      } else {
+        event.preventDefault();
       }
     });
 
