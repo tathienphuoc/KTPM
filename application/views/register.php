@@ -56,8 +56,8 @@
                 echo "<div class='col-md-12 text-danger h5'>Tài khoản đã tồn tại.</div>";
             } elseif ($this->uri->segment('3') == "nomatch") {
                 echo "<div class='col-md-12 text-danger h5'>Mật khẩu nhập lại không khớp.</div>";
-            } elseif ($this->uri->segment('3') == "length") {
-                echo "<div class='col-md-12 text-danger h5'>Độ dài mật khẩu phải lớn hơn 8 ký tự.</div>";
+            } elseif ($this->uri->segment('3') == "invalid") {
+                echo "<div class='col-md-12 text-danger h5'>Độ dài mật khẩu phải lớn hơn 8 ký tự bao gồm chữ hoa, chữ thường và số.</div>";
             }
             ?>
             <div class="col-md-12">

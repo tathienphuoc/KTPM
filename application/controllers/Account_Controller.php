@@ -57,8 +57,8 @@ class Account_Controller extends CI_Controller
         if (strcmp($this->input->post('confirm_password'), $this->input->post('password'))) {
             redirect('/Account_Controller/register/nomatch');
         }
-        if (strlen($this->input->post('password'))<9) {
-            redirect('/Account_Controller/register/length');
+        if ($this->passwordValid($this->input->post('password'))==1) {
+            redirect('/Account_Controller/register/invalid');
         }
             //save biến data vào CSDL
             $this->Account_Model->insert($data);
@@ -175,8 +175,8 @@ class Account_Controller extends CI_Controller
         )) {
             redirect('/Account_Controller/forgotpwd/nomatch');
         }
-        if (strlen($this->input->post('password')) < 9) {
-            redirect('/Account_Controller/forgotpwd/length');
+        if ($this->passwordValid($this->input->post('password'))) {
+            redirect('/Account_Controller/forgotpwd/invalid');
         }
         //mã hóa mật khẩu
         $user->pwd = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
@@ -186,6 +186,17 @@ class Account_Controller extends CI_Controller
         redirect('/Account_Controller/login');
     }
     
+    public function passwordValid($password){
+        $uppercase = preg_match('@[A-Z]@', $password);
+        $lowercase = preg_match('@[a-z]@', $password);
+        $number    = preg_match('@[0-9]@', $password);
+
+        if (!$uppercase || !$lowercase || !$number || strlen($password) < 8) {
+            //Ít nhất 8 ký tự bao gồm cả in hoa, in thường và số
+            return true;
+        }
+        return false;
+    }
 
     //Lưu thay đổi trong trang thông tin cá nhân
     public function saveProfile()
