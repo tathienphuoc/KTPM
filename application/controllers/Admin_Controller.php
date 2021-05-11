@@ -247,9 +247,13 @@ class Admin_Controller extends CI_Controller
             }
             //id của sách cần xóa
             $uri3 = $this->uri->segment('3');
-            //thực hiện xóa
-            $this->Book_Model->delete($uri3);
-            redirect('Admin_Controller/booksAdmin', 'refresh');
+            if(!$this->CartItem_Model->getByBookId($uri3)){
+                //thực hiện xóa
+                $this->Book_Model->delete($uri3);
+                redirect('Admin_Controller/booksAdmin', 'refresh');
+            }else{
+                redirect('Admin_Controller/booksAdmin/0/fail', 'refresh');
+            }
         }
     }
 

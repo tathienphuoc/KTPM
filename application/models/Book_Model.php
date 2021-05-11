@@ -151,5 +151,7 @@ class Book_Model extends CI_Model
         $this->db->order_by('total', 'desc'); 
         return $this->db->get('cartitem')->result();
     }
+
+    
 }
 ?>

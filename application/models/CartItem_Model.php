@@ -51,6 +51,15 @@ class CartItem_Model extends CI_Model
         return $result->row();
     }
 
+    //Truy xuất dựa trên id
+    public function getByBookId($id)
+    {
+        $result = $this->db->get_where("cartitem", array(
+            "book_id" => $id
+        ));
+        return $result->row();
+    }
+
     //Cập nhật
     public function update($data, $id)
     {

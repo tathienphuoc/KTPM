@@ -163,9 +163,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo base_url() ?>index.php/Admin_Controller/addBook">Thêm sản phẩm</a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="<?php echo base_url() ?>index.php/Admin_Controller/shipping">Giao hàng</a>
-                </li> -->
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo base_url() ?>index.php/Admin_Controller/statistic">Thống kê</a>
                 </li>
@@ -216,53 +213,69 @@
                 echo "</div >";
                 echo "<div class='container'>";
                 echo "<a href='" . base_url() . "index.php/Admin_Controller/editBook/" . $book->id . "' class='btn btn-outline-primary' style='width:49%'>Chỉnh sửa</a>";
-                echo "<a href='" . base_url() . "index.php/Admin_Controller/deleteBook/" . $book->id . "' class='btn btn-outline-primary' style='width:49%'>Xóa</a>";
+                echo "<a onclick='confirmDelete()' href='" . base_url() . "index.php/Admin_Controller/deleteBook/" . $book->id . "' class='btn btn-outline-primary' style='width:49%'>Xóa</a>";
                 echo "</div>";
                 echo "</div>";
             }
             ?>
-        </div></div>
-            <?php
-            echo "<nav aria-label='Page navigation example' class='mt-3'>";
-            echo "<ul class='pagination d-flex justify-content-center'>";
-            if ($current == 1) {
-                echo "<li class='page-item disabled'>";
-                echo "<a class='page-link'>Trước</a>";
-                echo "</li>";
-            } else {
-                $current -= 1;
-                echo "<li class='page-item active'>";
-                echo "<a class='page-link ' href='" . base_url() . "index.php/Admin_Controller/booksAdmin/" . $current . "' >Trước</a>";
-                echo "</li>";
-                $current += 1;
-            }
-            for ($i = $begin; $i <= $end; $i++) {
-                if ($current == $i) {
-                    echo "<li class='page-item disabled'>";
-                    echo "<a class='page-link'>" . $i . "</a>";
-                    echo "</li>";
-                } else {
-                    $current += 1;
-                    echo "<li class='page-item active'>";
-                    echo "<a class='page-link ' href='" . base_url() . "index.php/Admin_Controller/booksAdmin/" . $i . "' >" . $i . "</a>";
-                    echo "</li>";
-                    $current -= 1;
-                }
-            }
-            if ($current == $totalPage) {
-                echo "<li class='page-item disabled'>";
-                echo "<a class='page-link'>Sau</a>";
-                echo "</li>";
-            } else {
-                $current += 1;
-                echo "<li class='page-item active'>";
-                echo "<a class='page-link ' href='" . base_url() . "index.php/Admin_Controller/booksAdmin/" . $current . "' >Sau</a>";
-                echo "</li>";
-                $current -= 1;
-            }
-            echo " </ul>";
-            echo "</nav>";
-            ?>
+        </div>
+    </div>
+    <?php
+    echo "<nav aria-label='Page navigation example' class='mt-3'>";
+    echo "<ul class='pagination d-flex justify-content-center'>";
+    if ($current == 1) {
+        echo "<li class='page-item disabled'>";
+        echo "<a class='page-link'>Trước</a>";
+        echo "</li>";
+    } else {
+        $current -= 1;
+        echo "<li class='page-item active'>";
+        echo "<a class='page-link ' href='" . base_url() . "index.php/Admin_Controller/booksAdmin/" . $current . "' >Trước</a>";
+        echo "</li>";
+        $current += 1;
+    }
+    for ($i = $begin; $i <= $end; $i++) {
+        if ($current == $i) {
+            echo "<li class='page-item disabled'>";
+            echo "<a class='page-link'>" . $i . "</a>";
+            echo "</li>";
+        } else {
+            $current += 1;
+            echo "<li class='page-item active'>";
+            echo "<a class='page-link ' href='" . base_url() . "index.php/Admin_Controller/booksAdmin/" . $i . "' >" . $i . "</a>";
+            echo "</li>";
+            $current -= 1;
+        }
+    }
+    if ($current == $totalPage) {
+        echo "<li class='page-item disabled'>";
+        echo "<a class='page-link'>Sau</a>";
+        echo "</li>";
+    } else {
+        $current += 1;
+        echo "<li class='page-item active'>";
+        echo "<a class='page-link ' href='" . base_url() . "index.php/Admin_Controller/booksAdmin/" . $current . "' >Sau</a>";
+        echo "</li>";
+        $current -= 1;
+    }
+    echo " </ul>";
+    echo "</nav>";
+    ?>
+    <script>
+        function confirmDelete() {
+            confirm("Xác nhận xóa!");
+        }
+    </script>
+    <?php
+    if ($this->uri->segment('4') == "fail") {
+        echo '<script>';
+        echo 'function confirmDeleteFail(msg) {';
+        echo 'confirm("Xóa thất bại!");';
+        echo '}';
+        echo 'confirmDeleteFail()';
+        echo '</script>';
+    }
+    ?>
 </body>
 
 </html>
