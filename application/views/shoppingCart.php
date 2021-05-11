@@ -137,7 +137,7 @@
                 <div class="container">
                   <a href="<?php echo base_url(); ?>index.php/Book_Controller/books" type="button" style="float:right;" class="btn btn-outline-primary rounded-pill py-2">Tiếp tục mua sắm</a>
 
-                  <button type="submit" style="float:right; margin-right:10px;" class="btn btn-dark rounded-pill py-2" id="btnSubmit" disabled>Thanh toán</button>
+                  <button type="submit" style="float:right; margin-right:10px;" class="btn btn-dark rounded-pill py-2" id="btnSubmit">Thanh toán</button>
                 </div>
               </div>
             </div>
@@ -149,62 +149,60 @@
   </div>
   <!--Check form using Jquery-->
   <script>
-    $("#city").on("blur", function() {
+    $("#btnSubmit").on("click", function(event) {
+      event.preventDefault();
       var city = $("#city").val();
+      var phoneNumber = $("#phoneNumber").val();
+      var cardOwner = $("#cardOwner").val();
+      var address = $("#address").val();
+      var cardNumber = $("#cardNumber").val();
+      var error = 0;
+
       if (city.length <= 0) {
         $("#errCity").html("Vui lòng nhập tên thành phố.");
+        error++;
       } else {
         $("#errCity").html("");
       }
-      enableBtn();
-    });
-
-    $("#cardOwner").on("blur", function() {
-      var cardOwner = $("#cardOwner").val();
       if (cardOwner.length <= 0) {
         $("#errCardOwner").html("Vui lòng nhập tên chủ thẻ.");
+        error++;
       } else if (containNumber(cardOwner)) {
         $("#errCardOwner").html("Vui lòng nhập tên không chứa số.");
+        error++;
       } else if (cardOwner !== toTitleCase(cardOwner)) {
         $("#errCardOwner").html("Vui lòng viết hoa chữ cái đầu của mỗi từ.");
+        error++;
       } else {
         $("#errCardOwner").html("");
       }
-      enableBtn();
-    });
-
-    $("#address").on("blur", function() {
-      var address = $("#address").val();
       if (address.length <= 0) {
         $("#errAddress").html("Vui lòng nhập địa chỉ giao hàng.");
+        error++;
       } else {
         $("#errAddress").html("");
       }
-      enableBtn();
-    });
-
-    $("#cardNumber").on("blur", function() {
-      var cardNumber = $("#cardNumber").val();
       if (cardNumber.length <= 0) {
         $("#errCardNumber").html("Vui lòng nhập số tài khoản.");
+        error++;
       } else if (!onlyNumber(cardNumber)) {
         $("#errCardNumber").html("Vui lòng chỉ nhập số.");
+        error++;
       } else if (cardNumber.length < 10) {
         $("#errCardNumber").html("Số tài khoản ít nhất 10 số.");
+        error++;
       } else {
         $("#errCardNumber").html("");
       }
-      enableBtn();
-    });
-
-    $("#phoneNumber").on("blur", function() {
-      var phoneNumber = $("#phoneNumber").val();
       if (!isPhoneNumber(phoneNumber)) {
         $("#errPhone").html("Vui lòng nhập số điện thoại gồm ít nhất 10 số.");
+        error++;
       } else {
         $("#errPhone").html("");
       }
-      enableBtn();
+      if (error === 0) {} else {
+        $("#btnSubmit").submit();
+      }
     });
 
     function isPhoneNumber(phoneNumber) {
@@ -224,23 +222,6 @@
     function onlyNumber(val) {
       var numbers = /^[0-9]+$/;
       return val.match(numbers);
-    }
-
-    function isValid() {
-      $("*[id*=err]").each(function() {
-        if ($(this).html !== "") {
-          return false;
-        }
-      });
-      return true;
-    }
-
-    function enableBtn() {
-      if (isValid()) {
-        $("#btnSubmit").attr("disabled", true);
-      } else {
-        $("#btnSubmit").attr("disabled", false);
-      }
     }
 
     function containNumber(myString) {
