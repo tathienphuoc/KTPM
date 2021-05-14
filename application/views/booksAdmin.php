@@ -213,7 +213,7 @@
                 echo "</div >";
                 echo "<div class='container'>";
                 echo "<a href='" . base_url() . "index.php/Admin_Controller/editBook/" . $book->id . "' class='btn btn-outline-primary' style='width:49%'>Chỉnh sửa</a>";
-                echo "<a onclick='confirmDelete()' href='" . base_url() . "index.php/Admin_Controller/deleteBook/" . $book->id . "' class='btn btn-outline-primary' style='width:49%'>Xóa</a>";
+                echo "<a onclick='return confirm(\"Xác nhận xóa?\")' href='" . base_url() . "index.php/Admin_Controller/deleteBook/" . $book->id . "' class='btn btn-outline-primary' style='width:49%'>Xóa</a>";
                 echo "</div>";
                 echo "</div>";
             }
@@ -261,11 +261,6 @@
     echo " </ul>";
     echo "</nav>";
     ?>
-    <script>
-        function confirmDelete() {
-            confirm("Xác nhận xóa!");
-        }
-    </script>
     <?php
     if ($this->uri->segment('4') == "fail") {
         echo '<script>';
