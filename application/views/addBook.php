@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
   <!--Link Jquery-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <title>Thông tin cá nhân</title>
+    <title>Thêm sản phẩm</title>
 </head>
 <body>
 <div class="btn btn-outline-primary" style="margin-left:10px;margin-top:10px;border:1px solid blue">
